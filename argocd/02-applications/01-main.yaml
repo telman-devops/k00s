@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: 'https://github.com/telman-devops/k00s'
     path: argocd/01-manifests/main
-    targetRevision: master
+    targetRevision: main
   destination:
     server: 'https://kubernetes.default.svc'
   syncPolicy: { }
