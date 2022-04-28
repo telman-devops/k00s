@@ -30,42 +30,46 @@ service:
 
 ingress:
   enabled: true
-
   hosts:
-    core: harbor.kryukov.local
-    notary: notary.kryukov.local
+    core: harbor.telman.io
+    notary: notary.telman.io
   annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
     ingress.kubernetes.io/ssl-redirect: 'true'
     ingress.kubernetes.io/proxy-body-size: '0'
     nginx.ingress.kubernetes.io/ssl-redirect: 'true'
     nginx.ingress.kubernetes.io/proxy-body-size: '0'
-    kubernetes.io/ingress.class: 'system-ingress'
+    kubernetes.io/ingress.class: 'ingress'
+  tls:
+    - secretName: harbor-tls
+      hosts:
+        - harbor.telman.io
 
-externalURL: http://harbor.kryukov.local
+externalURL: http://harbor.telman.io
 
 persistence:
   enabled: true
   persistentVolumeClaim:
     registry:
       existingClaim: ''
-      storageClass: 'managed-nfs-storage'
+      storageClass: 'local-storage'
       subPath: ''
       accessMode: ReadWriteOnce
       size: 5Gi
     jobservice:
       existingClaim: ''
-      storageClass: 'managed-nfs-storage'
+      storageClass: 'local-storage'
       subPath: ''
       accessMode: ReadWriteOnce
       size: 1Gi
     chartmuseum:
       existingClaim: ''
-      storageClass: 'managed-nfs-storage'
+      storageClass: 'local-storage'
       subPath: ''
       accessMode: ReadWriteOnce
       size: 5Gi
     trivy:
-      storageClass: 'managed-nfs-storage'
+      storageClass: 'local-storage'
       accessMode: ReadWriteOnce
       size: 5Gi
 
@@ -175,7 +179,7 @@ externalRedis:
 postgresql:
   enabled: false
 externalDatabase:
-  host: base-pgbouncer.pgo.svc
+  host: 172.104.144.233
   user: harbor
   password: 'harborpassword'
   port: 5432
