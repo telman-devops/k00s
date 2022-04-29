@@ -128,7 +128,7 @@ spec:
             - name: DB_VENDOR
               value: postgres
             - name: DB_ADDR
-              value: base-pgbouncer.pgo.svc
+              value: 172.104.144.233
             - name: DB_PORT
               value: "5432"
             - name: DB_DATABASE
