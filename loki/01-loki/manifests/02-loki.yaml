@@ -151,7 +151,7 @@ data:
       access_log   /dev/stderr  main;
       sendfile     on;
       tcp_nopush   on;
-      resolver coredns.kube-system.svc.cluster.local;
+      resolver kube-dns.kube-system.svc.cluster.local;
     
       server {
         listen             8080;
