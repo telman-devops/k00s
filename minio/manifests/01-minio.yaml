@@ -108,7 +108,7 @@ spec:
               mountPath: /data-1
       containers:
         - name: minio
-          image: quay.io/bitnami/minio:2021.6.17-debian-10-r14
+          image: bitnami/minio:2021.6.17-debian-10-r14
           imagePullPolicy: "IfNotPresent"
           securityContext:
             runAsNonRoot: true
