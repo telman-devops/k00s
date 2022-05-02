@@ -1,0 +1,21 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: minioconsole
+  namespace: minio
+  annotations:
+    kubernetes.io/ingress.class: "ingress"
+spec:
+  rules:
+    - host: "minio.telman.io"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: console
+                port:
+                  name: http
+
